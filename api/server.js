@@ -1,6 +1,6 @@
 //Imports
-const express = require('express');
-const helmet = require('helmet');
+const express = require('express')
+const helmet = require('helmet')
 const morgan = require('morgan')
 const cors = require('cors')
 const projectRouter = require('./project/router')
@@ -9,12 +9,12 @@ const taskRouter = require('./task/router')
 
 
 //Instance Of Express App
-const server = express();
+const server = express()
 
 
 //Calling Middleware
-server.use(express.json());
-server.use(helmet());
+server.use(express.json())
+server.use(helmet())
 server.use(morgan())
 server.use(cors())
 
@@ -49,8 +49,8 @@ server.use((err, req, res, next) => { // eslint-disable-line
   res.status(500).json({
     message: err.message,
     stack: err.stack,
-  });
-});
+  })
+})
 
 
 //Exports; Exposing
