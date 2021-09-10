@@ -3,9 +3,9 @@ const express = require('express')
 const helmet = require('helmet')
 const morgan = require('morgan')
 const cors = require('cors')
-const projectRouter = require('./project/router')
-const resourceRouter = require('./resource/router')
-const taskRouter = require('./task/router')
+const projectRouter = require('./project/router.js')
+const resourceRouter = require('./resource/router.js')
+const taskRouter = require('./task/router.js')
 
 
 //Instance Of Express App
@@ -20,9 +20,9 @@ server.use(cors())
 
 
 //Consuming Routers
-server.use('api/projects', projectRouter)
-server.use('api/resources', resourceRouter)
-server.use('api/tasks', taskRouter)
+server.use('/api/projects', projectRouter)
+server.use('/api/resources', resourceRouter)
+server.use('/api/tasks', taskRouter)
 
 
 //Endpoints
@@ -32,24 +32,6 @@ server.get('/', (req, res) => {
         <h1>Welcome</h1>
         `
     )
-})
-
-
-//Catch-All
-server.use('*', (req, res, next) => {
-    next({
-        status: 404,
-        message: 'page not found'
-    })
-})
-
-
-//Error-Handling Middleware
-server.use((err, req, res, next) => { // eslint-disable-line
-  res.status(500).json({
-    message: err.message,
-    stack: err.stack,
-  })
 })
 
 
